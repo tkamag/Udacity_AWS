@@ -36,3 +36,8 @@ Below are steps you can follow to complete each component of this project.
 
  Markup : - [ ] An uncompleted task
           - [x] A completed task
+
+
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
