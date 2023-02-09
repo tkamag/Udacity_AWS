@@ -33,3 +33,6 @@ Below are steps you can follow to complete each component of this project.
 3. Test by running ``SELECT`` statements after running the queries on your database
 
 ## Project Checklist
+
+ Markup : - [ ] An uncompleted task
+          - [x] A completed task
