@@ -34,10 +34,7 @@ Below are steps you can follow to complete each component of this project.
 
 ## Project Checklist
 
- Markup : - [ ] An uncompleted task
-          - [x] A completed task
-
-
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [x] Use the workspace.
+- [x] Locate the dataset in the event_data folder in the workspace.
+- [x] Use the project template in the workspace.
+- [x] Model your NoSQL Database using the provided queries in the workspace template.
