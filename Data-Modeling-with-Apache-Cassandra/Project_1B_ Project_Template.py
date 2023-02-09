@@ -47,8 +47,9 @@ for f in file_path_list:
             
 # uncomment the code below if you would like to get total number of rows 
 print(len(full_data_rows_list))
+
 # uncomment the code below if you would like to check to see what the list of event data rows will look like
-#print(full_data_rows_list)
+print(full_data_rows_list)
 
 # creating a smaller event data csv file called event_datafile_full csv that will be used to insert data into the \
 # Apache Cassandra tables
@@ -70,27 +71,6 @@ with open('event_datafile_new.csv', 'r', encoding = 'utf8') as f:
 
 for line in list(pd.read_csv('event_datafile_new.csv').columns):
     print(line)
-
-# # Part II. Complete the Apache Cassandra coding portion of your project. 
-# 
-# ## Now you are ready to work with the CSV file titled <font color=red>event_datafile_new.csv</font>, located within the Workspace directory.  The event_datafile_new.csv contains the following columns: 
-# - artist 
-# - firstName of user
-# - gender of user
-# - item number in session
-# - last name of user
-# - length of the song
-# - level (paid or free song)
-# - location of the user
-# - sessionId
-# - song title
-# - userId
-# 
-# The image below is a screenshot of what the denormalized data should appear like in the <font color=red>**event_datafile_new.csv**</font> after the code above is run:<br>
-# 
-# <img src="images/image_event_datafile_new.jpg">
-
-# ## Begin writing your Apache Cassandra code in the cells below
 
 # #### Creating a Cluster
 
@@ -122,42 +102,7 @@ try:
 except Exception as e:
     print(e)
 
-
-# ### Now we need to create tables to run the following queries. Remember, with Apache Cassandra you model the database tables on the queries you want to run.
-
-# ## Create queries to ask the following three questions of the data
-# 
-# ### 1. Give me the artist, song title and song's length in the music app history that was heard during  sessionId = 338, and itemInSession  = 4
-# 
-# 
-# ### 2. Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
-#     
-# 
-# ### 3. Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
-# 
-# 
-# 
-
-# ## Query 1
-# 
-# > Give me the artist, song title and song's length in the music app history that was heard during sessionId = 338, and itemInSession = 4
-# 
-# Let's call our new table song_details.
-# 
-# In CQL, to answer this question we will need to obtain (select) the artist name, song name, and song length from out table, and we will need to filter by sessionId and itemInSession. Here's what we obtain:
-# 
-# ````sql
-# SELECT artist, song, length FROM session_songs WHERE sessionId = 338 AND itemInSession = 4
-# ````
-# 
-# * Our **primary key** will consist of two items: 
-#     * Partition key name **sessionId**, 
-#     * Clustering key identify by **itemInSession** so that we can filter by this attributes later on.
-# * Other"s columns of our table will be: sessionId, itemInSession, artist, song and length.
-
-## TO-DO: Query 1:  Give me the artist, song title and song's length in the music app history that was heard during \
-## sessionId = 338, and itemInSession = 4
-
+# Query 1
 
 create_song_details = "CREATE TABLE IF NOT EXISTS song_details"
 create_song_details = create_song_details + (""" (sessionId INT, itemInSession INT, artist TEXT, song TEXT,
@@ -192,8 +137,6 @@ with open(file, encoding = 'utf8') as f:
 
 
 # #### Do a SELECT to verify that the data have been inserted into each table
-
-## TO-DO: Add in the SELECT statement to verify the data was entered into the table
 try:
     rows = session.execute(select_song_details, (338, 4))
 except Exception as e:
@@ -202,27 +145,7 @@ except Exception as e:
 for row in rows:
     print("Artist: "+row.artist, "\nSong Title: "+row.song, "\nSong Length: "+str(row.length))
 
-
-# ### COPY AND REPEAT THE ABOVE THREE CELLS FOR EACH OF THE THREE QUESTIONS
-
-# ## Query 2
-# 
-# > Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for userid = 10, sessionid = 182
-# 
-# Let's call our new table song_users.
-# 
-# In CQL, to answer this question we will need to obtain (select) the artist name, song name, and song length from out table, and we will need to filter by sessionId and itemInSession. Here's what we obtain:
-# 
-# ````sql
-# SELECT artist, song, firstName, lastName FROM song_users WHERE userId = 10 AND sessionId = 182
-# ````
-# 
-# * Our **primary key** will consist of two items: 
-#     * Composite partition key name **(userId, sessionId)**, 
-#     * Clustering key identify by **itemInSession** so that we can filter by this attributes later on.
-
-## TO-DO: Query 2: Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name)\
-## for userid = 10, sessionid = 182
+# Query 2
 
 create_song_users = "CREATE TABLE IF NOT EXISTS song_users"
 create_song_users = create_song_users + (""" (userId INT, sessionId INT, itemInSession INT, 
@@ -250,8 +173,6 @@ with open(file, encoding = 'utf8') as f:
         artist, firstName, gender, itemInSession, lastName, length, level, location, sessionId, song, userId = line
         session.execute(query, (int(userId), int(sessionId), int(itemInSession), artist, song, firstName, lastName))
 
-## TO-DO: Query 3: Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
-
 try:
     rows = session.execute(select_song_users, (10, 182))
 except Exception as e:
@@ -262,18 +183,7 @@ for row in rows:
     print('=========================')
 
 
-# ## Query 3
-# Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
-# 
-# Let's call our new table users_history.
-# 
-# In CQL, to answer this question we will need to obtain (select) the first and last name, who listened to the song 'All Hands Against His Own'. Here's what we obtain:
-# ````sql
-# SELECT firstName, lastName FROM users_history WHERE song = 'All Hands Against His Own'
-# ````
-# * Our primary key will consist of **partition key** song, 
-# * **Clustering key** userId. This uniquely identifies our rows.
-# * The columns of our table will be: song, firstName, lastName and userId.
+# Query 3
 
 create_users_history = "CREATE TABLE IF NOT EXISTS users_history"
 create_users_history = create_users_history + (""" (song TEXT, userId INT, firstName TEXT, lastName TEXT, 
@@ -312,11 +222,9 @@ for row in rows:
 
 
 # ### Drop the tables before closing out the sessions
-
 session.execute("DROP TABLE IF EXISTS song_details")
 session.execute("DROP TABLE IF EXISTS song_users")
 session.execute("DROP TABLE IF EXISTS users_history")
-
 
 # ### Close the session and cluster connection¶
 session.shutdown()
