@@ -1,3 +1,4 @@
+---
 # image:
 #   file: .gitpod.Dockerfile
 tasks:
@@ -14,3 +15,4 @@ tasks:
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
+    - amazonwebservices.aws-toolkit-vscode
