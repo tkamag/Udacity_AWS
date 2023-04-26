@@ -70,7 +70,7 @@ def list_policy_user(username):
             UserName=username)
     return(response.get('AttachedPolicies',''))
 
-def create_access_ket(username):
+def create_access_key(username):
     """
        Create access key
     """
@@ -79,15 +79,15 @@ def create_access_ket(username):
                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                     region_name=AWS_REGION)
 
-    response = client.create_access_key(
+    response = iam_client.create_access_key(
             UserName=username
         )   
-    print(response)
+    return(response.get('AccessKey','').get('AccessKeyId', ''), response.get('AccessKey','').get('SecretAccessKey', ''), response.get('AccessKey','').get('Status', ''))
 
 
 if __name__ == '__main__':
     # Constants
-    USERNAME = 'test-conupdate-10'
+    USERNAME = 'test-conupdate-157'
     a=create_iam_user(USERNAME)
     logger.info(f'Creating username...')
     logger.info(f'\nUser:\t {a[0]} \nArn: \t {a[1]}')
@@ -99,7 +99,8 @@ if __name__ == '__main__':
     for item in list_policy_user(USERNAME):
         logger.info(f'\nPolicyName: { item["PolicyName"]} \nPolicyArn: {item["PolicyArn"]}')
 
+    b=create_access_key(USERNAME)
     logger.info(f'Creating access keys to...:\t{a[0]}')
-    logger.info(f'Policy details:\t {pprint(create_access_ket(USERNAME))}')
-    logger.info(f'PAccess keys created !!:')
+    logger.info(f'\nAccess Key ID:\t \t {b[0]} \nSecret Access Key ID:\t {b[1]} \nStatus:\t \t \t {b[2]}')
+    logger.info(f'Access keys created !!:')
 
