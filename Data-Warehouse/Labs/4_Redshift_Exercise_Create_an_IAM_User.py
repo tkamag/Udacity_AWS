@@ -70,17 +70,36 @@ def list_policy_user(username):
             UserName=username)
     return(response.get('AttachedPolicies',''))
 
+def create_access_ket(username):
+    """
+       Create access key
+    """
+    iam_client = boto3.client('iam', 
+                    aws_access_key_id=AWS_ACCESS_KEY_ID,
+                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                    region_name=AWS_REGION)
+
+    response = client.create_access_key(
+            UserName=username
+        )   
+    print(response)
+
+
 if __name__ == '__main__':
     # Constants
     USERNAME = 'test-conupdate-10'
     a=create_iam_user(USERNAME)
     logger.info(f'Creating username...')
     logger.info(f'\nUser:\t {a[0]} \nArn: \t {a[1]}')
-    logger.info(f'User was created...')
+    logger.info(f'User was created. !!')
 
     logger.info(f'Attaching policy(ies) to...:\t{a[0]}')
     logger.info(f'Policy details:\t {pprint(attach_policy_user(USERNAME))}')
-    logger.info(f'Policy attached...')
+    logger.info(f'Policy attached !!')
     for item in list_policy_user(USERNAME):
         logger.info(f'\nPolicyName: { item["PolicyName"]} \nPolicyArn: {item["PolicyArn"]}')
+
+    logger.info(f'Creating access keys to...:\t{a[0]}')
+    logger.info(f'Policy details:\t {pprint(create_access_ket(USERNAME))}')
+    logger.info(f'PAccess keys created !!:')
 
