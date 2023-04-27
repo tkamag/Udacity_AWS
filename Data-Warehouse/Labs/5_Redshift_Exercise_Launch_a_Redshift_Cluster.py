@@ -16,6 +16,13 @@ logging.basicConfig(level=logging.INFO,
 AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
 AWS_REGION=os.environ['DEFAULT_REGION']
+DWH_CLUSTER_TYPE=os.environ['DWH_CLUSTER_TYPE']
+DWH_NODE_TYPE=os.environ['DWH_NODE_TYPE']
+DWH_NUM_NODES=os.environ['DWH_NUM_NODES']
+DWH_DB=os.environ['DWH_DB']
+DWH_CLUSTER_IDENTIFIER=os.environ['DWH_CLUSTER_IDENTIFIER']
+DWH_DB_USER=os.environ['DWH_DB_USER']
+DWH_DB_PASSWORD=os.environ['DWH_DB_PASSWORD']
 #1. Create user
 
 def launch_redshift_cluster():
@@ -26,8 +33,7 @@ def launch_redshift_cluster():
                     aws_access_key_id=AWS_ACCESS_KEY_ID,
                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                     region_name=AWS_REGION)
-
-    DWH_CLUSTER_TYPE=  'single-node'  
+ 
     try:
         response = redshift.create_cluster(        
             # add parameters for hardware                                      
