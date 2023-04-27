@@ -30,30 +30,30 @@ def launch_redshift_cluster():
         
     try:
         response = redshift.create_cluster(        
-        # add parameters for hardware                                      
-        ClusterType = DWH_CLUSTER_TYPE,                 
-        NodeType = DWH_NODE_TYPE,                       
-        NumberOfNodes = int(DWH_NUM_NODES), 
+            # add parameters for hardware                                      
+            ClusterType = DWH_CLUSTER_TYPE,                 
+            NodeType = DWH_NODE_TYPE,                       
+            NumberOfNodes = int(DWH_NUM_NODES), 
 
-        #Identifiers & Credentials        
-        DBName= DWH_DB,                                
-        Port=5439,        
+            #Identifiers & Credentials        
+            DBName= DWH_DB,                                
+            Port=5439,        
 
-        # add parameters for identifiers & credentials
-        ClusterIdentifier = DWH_CLUSTER_IDENTIFIER,  
-        MasterUsername= DWH_DB_USER,                    
-        MasterUserPassword = DWH_DB_PASSWORD,           
-        
-        # add parameter for role (to allow s3 access)
-        IamRoles=['arn:aws:iam::128660232396:role/myRedshiftRole'],
+            # add parameters for identifiers & credentials
+            ClusterIdentifier = DWH_CLUSTER_IDENTIFIER,  
+            MasterUsername= DWH_DB_USER,                    
+            MasterUserPassword = DWH_DB_PASSWORD,           
+            
+            # add parameter for role (to allow s3 access)
+            IamRoles=['arn:aws:iam::128660232396:role/myRedshiftRole'],
 
-        #VpcSecurityGroupIds=[],
-        #ClusterSubnetGroupName=,
-        #ClusterSecurityGroups=[],
+            #VpcSecurityGroupIds=[],
+            #ClusterSubnetGroupName=,
+            #ClusterSecurityGroups=[],
 
-        AvailabilityZone=AWS_REGION,
-        EnhancedVpcRouting=False,
-        PubliclyAccessible=True
+            AvailabilityZone=AWS_REGION,
+            EnhancedVpcRouting=False,
+            PubliclyAccessible=True
     )
 except Exception as e:
     print(e)
