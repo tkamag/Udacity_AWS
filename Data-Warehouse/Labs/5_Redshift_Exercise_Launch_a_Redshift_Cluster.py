@@ -65,3 +65,6 @@ def launch_redshift_cluster():
     except Exception as e:
         print(e)
     return response
+
+    if __name__ == '__main__':
+        launch_redshift_cluster()
