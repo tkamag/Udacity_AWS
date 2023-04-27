@@ -27,7 +27,7 @@ def launch_redshift_cluster():
                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                     region_name=AWS_REGION)
 
-        
+    DWH_CLUSTER_TYPE=  'single-node'  
     try:
         response = redshift.create_cluster(        
             # add parameters for hardware                                      
