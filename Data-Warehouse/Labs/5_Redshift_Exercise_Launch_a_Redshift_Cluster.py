@@ -16,6 +16,7 @@ logging.basicConfig(level=logging.INFO,
 AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
 AWS_REGION=os.environ['DEFAULT_REGION']
+
 DWH_CLUSTER_TYPE=os.environ['DWH_CLUSTER_TYPE']
 DWH_NODE_TYPE=os.environ['DWH_NODE_TYPE']
 DWH_NUM_NODES=os.environ['DWH_NUM_NODES']
