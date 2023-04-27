@@ -24,6 +24,7 @@ DWH_DB=os.environ['DWH_DB']
 DWH_CLUSTER_IDENTIFIER=os.environ['DWH_CLUSTER_IDENTIFIER']
 DWH_DB_USER=os.environ['DWH_DB_USER']
 DWH_DB_PASSWORD=os.environ['DWH_DB_PASSWORD']
+CLUSTER_SUNET_GROUP_NAME=os.environ['CLUSTER_SUNET_GROUP_NAME']
 #1. Create user
 
 #def launch_redshift_cluster():
@@ -49,7 +50,8 @@ response = redshift.create_cluster(
             # add parameters for identifiers & credentials
             ClusterIdentifier = DWH_CLUSTER_IDENTIFIER,  
             MasterUsername= DWH_DB_USER,                    
-            MasterUserPassword = DWH_DB_PASSWORD,           
+            MasterUserPassword = DWH_DB_PASSWORD, 
+            ClusterSubnetGroupName = CLUSTER_SUNET_GROUP_NAME    
             
             # add parameter for role (to allow s3 access)
             IamRoles=['arn:aws:iam::128660232396:role/myRedshiftRole'],
