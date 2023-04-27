@@ -72,5 +72,5 @@ response = redshift.create_cluster(
 
 if __name__ == '__main__':
     logger.info(f'Creating Redshift Cluster...')
-    logger.info(f'Default VPC ID: \t {launch_redshift_cluster()}')
+    #logger.info(f'Default VPC ID: \t {launch_redshift_cluster()}')
     logger.info(f'Redshift Cluster has been created...')
