@@ -54,7 +54,7 @@ response = redshift.create_cluster(
             # add parameter for role (to allow s3 access)
             IamRoles=['arn:aws:iam::128660232396:role/myRedshiftRole'],
 
-            #VpcSecurityGroupIds=[],
+            VpcSecurityGroupIds=['sg-0ddc8736919a770c8'],
             #ClusterSubnetGroupName=,
             #ClusterSecurityGroups=[],
 
