@@ -26,17 +26,17 @@ DWH_DB_USER=os.environ['DWH_DB_USER']
 DWH_DB_PASSWORD=os.environ['DWH_DB_PASSWORD']
 #1. Create user
 
-def launch_redshift_cluster():
-    """
-    Creates an IAM user with AWS Management console access  for Redshift
-    """
-    redshift = boto3.client('redshift',
+#def launch_redshift_cluster():
+#    """
+#    Creates an IAM user with AWS Management console access  for Redshift
+#    """
+redshift = boto3.client('redshift',
                     aws_access_key_id=AWS_ACCESS_KEY_ID,
                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                     region_name=AWS_REGION)
  
-    try:
-        response = redshift.create_cluster(        
+    #try:
+response = redshift.create_cluster(        
             # add parameters for hardware                                      
             ClusterType = DWH_CLUSTER_TYPE,                 
             NodeType = DWH_NODE_TYPE,                       
@@ -62,13 +62,13 @@ def launch_redshift_cluster():
             EnhancedVpcRouting=False,
             PubliclyAccessible=True
     )
-    except ClientError:
-        logger.exception('Could not modify security group rule.')
-        raise
-    else:
-        return response
+    #except ClientError:
+    #    logger.exception('Could not modify security group rule.')
+    ##   raise
+    #else:
+    #return response
 
-    if __name__ == '__main__':
-        logger.info(f'Creating Redshift Cluster...')
-        logger.info(f'Default VPC ID: \t {launch_redshift_cluster()}')
-        logger.info(f'Redshift Cluster has been created...')
+if __name__ == '__main__':
+    logger.info(f'Creating Redshift Cluster...')
+    logger.info(f'Default VPC ID: \t {launch_redshift_cluster()}')
+    logger.info(f'Redshift Cluster has been created...')
