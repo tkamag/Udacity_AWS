@@ -62,5 +62,6 @@ def launch_redshift_cluster():
             EnhancedVpcRouting=False,
             PubliclyAccessible=True
     )
-except Exception as e:
-    print(e)
+    except Exception as e:
+        print(e)
+    return response
