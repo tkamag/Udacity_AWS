@@ -51,8 +51,7 @@ response = redshift.create_cluster(
             ClusterIdentifier = DWH_CLUSTER_IDENTIFIER,  
             MasterUsername= DWH_DB_USER,                    
             MasterUserPassword = DWH_DB_PASSWORD, 
-            ClusterSubnetGroupName = CLUSTER_SUBNET_GROUP_NAME,
-            AvailabilityZone=AWS_REGION,    
+            #ClusterSubnetGroupName = CLUSTER_SUBNET_GROUP_NAME   
             
             # add parameter for role (to allow s3 access)
             IamRoles=['arn:aws:iam::128660232396:role/myRedshiftRole'],
@@ -61,7 +60,7 @@ response = redshift.create_cluster(
             #ClusterSubnetGroupName=,
             #ClusterSecurityGroups=[],
 
-            AvailabilityZone=AWS_REGION,
+            #AvailabilityZone=AWS_REGION,
             EnhancedVpcRouting=False,
             PubliclyAccessible=True
     )
