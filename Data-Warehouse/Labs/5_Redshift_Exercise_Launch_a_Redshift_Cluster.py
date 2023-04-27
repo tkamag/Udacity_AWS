@@ -62,9 +62,11 @@ def launch_redshift_cluster():
             EnhancedVpcRouting=False,
             PubliclyAccessible=True
     )
-    except Exception as e:
-        print(e)
-    return response
+    except ClientError:
+        logger.exception('Could not modify security group rule.')
+        raise
+    else:
+        return response
 
     if __name__ == '__main__':
         logger.info(f'Creating Redshift Cluster...')
