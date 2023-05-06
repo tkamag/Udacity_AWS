@@ -9,8 +9,8 @@ As their data engineer, you are tasked with building an ETL pipeline that extrac
 
 <p align="center">
   <img src="./fig/sparkify-s3-to-redshift-etl.png" alt=".." title="Optional title" width="66%" height="70%"/>  
+  <em>Figure 1 training process of NN.</em>
 </p> 
-
 <p align="center">
   <caption>System Architecture for AWS S3 to Redshift ETL</caption>  
 </p> 
