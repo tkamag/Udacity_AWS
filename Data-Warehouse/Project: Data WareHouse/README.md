@@ -24,4 +24,4 @@ In this project, you'll apply what you've learned on data warehouses and AWS to 
 
 * The starter code that we give you provides a framework for doing this project. The vast majority of your work will be getting the SQL queries part correct. Very few changes will be required to the starter code.
 
-* This is an excellent template that you can take into the work place and use for future ETL jobs that you would do as a Data Engineer. It is well architected (e.g. staging tables for data independence from the logs and the final ``Sparkify DWH``) AND bulk data loads into the ``Sparkify DWH`` for high compute performance via SQL from those staging tables.
+* This is an excellent template that you can take into the work place and use for future ETL jobs that you would do as a Data Engineer. It is well architected (e.g. staging tables for data independence from the logs and the final ``Sparkify DWH``) AND bulk data loads into the ``Sparkify DWH for high compute performance via SQL from those staging tables.
