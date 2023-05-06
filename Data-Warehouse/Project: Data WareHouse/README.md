@@ -12,7 +12,7 @@ As their data engineer, you are tasked with building an ETL pipeline that extrac
     <figcaption></figcaption>
 </figure> 
 
-<div style="text-align: center;">
-  <img src="./fig/sparkify-s3-to-redshift-etl.png" alt="Sky" style="width: 350px; height: 350px;">
-</div>
 
+<p align="center">
+  <img width="600" height="200" src="./fig/sparkify-s3-to-redshift-etl.png">
+</p>
