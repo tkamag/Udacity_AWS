@@ -59,5 +59,5 @@ Data are in ``log_json_path.json``.
 
 
 ## References
-* [Amazon Reedshift Database Developer Guide](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html)
+* [Amazon Reedshift Database Developer Guide](https://docs.aws.amazon.com/redshift/index.html)
   * * [Create Table](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html)
