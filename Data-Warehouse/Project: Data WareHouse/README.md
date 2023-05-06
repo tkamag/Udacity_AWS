@@ -56,3 +56,7 @@ log_data/2018/11/2018-11-13-events.json
 
 ### Log Json Meta Information
 Data are in ``log_json_path.json``.
+
+Here is a simple footnote[^1]. With some additional text after it.
+
+[^1]: My reference.
