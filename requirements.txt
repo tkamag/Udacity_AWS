@@ -4,3 +4,4 @@ matplotlib
 scikit-learn
 Boto3
 botocore
+jupyterlab
