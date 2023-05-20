@@ -91,7 +91,7 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 2023-05-19 15:01:15,764: INFO: Connection OK.!!!
 ````
 
-4. Run the ``create_tables script.py`` to set up the database staging and analytical tables
+4. Run the ``create_tables script.py`` to set up the database staging and analytical tables. This script will build the overall **ETL pipeline**
 ````python
 $ python create_tables.py
 ````
@@ -183,3 +183,13 @@ Running:
     SELECT COUNT(*) FROM dim_time
          6813 rows
  ````
+
+7. Delete your redshift cluster when finished. You also need to detach role policy and delete role created.
+   
+````python
+redshift.delete_cluster( ClusterIdentifier=DWH_CLUSTER_IDENTIFIER,  SkipFinalClusterSnapshot=True)
+
+iam.detach_role_policy(RoleName=DWH_IAM_ROLE_NAME, PolicyArn="arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess")
+
+iam.delete_role(RoleName=DWH_IAM_ROLE_NAME)
+````
