@@ -12,7 +12,35 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
  Data engineers build and design relational databases to assist organizations in collecting, storing, and analyzing data. Then, data analysts and data scientists use them for digesting large amounts of data and identifying meaningful insights. You can learn more about relational database features, use cases, and know much mùore about users preferences. For example, what is the most played song? When is the highest usage time of day by hour for songs?etc ...
 
  ## Schema for Song Play Analysis
- Using the song and event datasets, we've created a star schema optimized for queries on song play analysis. This includes the following tables. 
+ Using the song and event datasets, we've created a **star schema** optimized for queries on song play analysis. 
+ The purpose of a **star schemas** is to denormalize the data, which means adding redundant columns to dimension tables to make querying and working with the data faster and easier. The goal is to trade some redundancy (duplication of data) in the data model for increased query speed, by avoiding computationally expensive join operations.
+
+ Buy using a **star schema**, we can easily answer some suqestion like /
+ * Count and order the most 10 songs title, and artist namelistened by women in 2018.
+
+````python
+SELECT
+	dim_artists.name,
+    dim_songs.title,
+	COUNT(fact_songplays.songplay_id)
+
+FROM fact_songplays 
+
+INNER JOIN dim_artists 	      ON (fact_songplays.artist_id = dim_artists.artist_id)
+INNER JOIN dim_songs 	      ON (fact_songplays.song_id = dim_songs.song_id)
+INNER JOIN dim_users 	      ON (fact_songplays.user_id = dim_users.user_id)
+INNER JOIN dim_time  	      ON (fact_songplays.start_time = dim_time.start_time)
+
+where dim_time.year = 2018 and dim_users.gender = 'F'
+
+GROUP BY
+	dim_artists.name,  dim_songs.title
+order by count desc
+limit 10
+````
+ 
+ 
+ This includes the following tables. 
  ### Fact Table
 1. **fact_songplays** - records in event data associated with song plays i.e. records with page NextSong
 ### Dimension Tables
