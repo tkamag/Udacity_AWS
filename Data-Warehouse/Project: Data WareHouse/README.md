@@ -210,7 +210,7 @@ Running:
 Suppose we want to know **the count and order the most 10 songs title, and artist namelistened by women in 2018**.
 
 <p align="center">
-  <img src="./fig/query.png" alt=".." title="Optional title" width="80%" height="70%"/>  
+  <img src="./fig/query.png" alt=".." title="Optional title" width="98%" height="70%"/>  
 </p> 
 <p align="center">
   <caption>System Architecture for AWS S3 to Redshift ETL</caption>  
