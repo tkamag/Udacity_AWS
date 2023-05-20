@@ -28,3 +28,36 @@ The overall schema can be resume below:
 </p> 
 
  ## How to run
+ The project folder includes several files where the main important is ``dwh.cfg``, wher you have to fill the some informations, and save it as ``dwh.cfg`` in the project root folder.
+
+ ````cfg
+ [CLUSTER]
+HOST=''
+DB_NAME=''
+DB_USER=''
+DB_PASSWORD=''
+DB_PORT=5439
+
+[IAM_ROLE]
+ARN=
+
+[S3]
+LOG_DATA='s3://udacity-dend/log_data'
+LOG_JSONPATH='s3://udacity-dend/log_json_path.json'
+SONG_DATA='s3://udacity-dend/song_data'
+
+[AWS]
+KEY=
+SECRET=
+
+[DWH]
+DWH_CLUSTER_TYPE       = multi-node
+DWH_NUM_NODES          = 4
+DWH_NODE_TYPE          = dc2.large
+DWH_CLUSTER_IDENTIFIER = 
+DWH_DB                 = 
+DWH_DB_USER            = 
+DWH_DB_PASSWORD        = 
+DWH_PORT               = 5439
+DWH_IAM_ROLE_NAME      = 
+````
