@@ -149,37 +149,30 @@ $ python query_results.py
 W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python query_results.py
 2023-05-19 19:21:40,576: INFO:
 Running:
-
     SELECT COUNT(*) FROM staging_events
          8056 rows
 2023-05-19 19:21:40,764: INFO:
 Running:
-
     SELECT COUNT(*) FROM staging_songs
          385252 rows
 2023-05-19 19:21:40,952: INFO:
 Running:
-
     SELECT COUNT(*) FROM fact_songplays
          6962 rows
 2023-05-19 19:21:41,134: INFO:
 Running:
-
     SELECT COUNT(*) FROM dim_users
          104 rows
 2023-05-19 19:21:41,318: INFO:
 Running:
-
     SELECT COUNT(*) FROM dim_songs
          384995 rows
 2023-05-19 19:21:41,506: INFO:
 Running:
-
     SELECT COUNT(*) FROM dim_artists
          45266 rows
 2023-05-19 19:21:41,692: INFO:
 Running:
-
     SELECT COUNT(*) FROM dim_time
          6813 rows
  ````
