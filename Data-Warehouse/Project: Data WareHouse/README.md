@@ -213,7 +213,7 @@ Suppose we want to know **the count and order the most 10 songs title, and artis
   <img src="./fig/query.png" alt=".." title="Optional title" width="98%" height="70%"/>  
 </p> 
 
-1. Delete your redshift cluster when finished. You also need to detach role policy and delete role created.
+1. Delete your redshift cluster when finished. You also need to detach role policy and delete role created
    
 ````python
 redshift.delete_cluster( ClusterIdentifier=DWH_CLUSTER_IDENTIFIER,  SkipFinalClusterSnapshot=True)
