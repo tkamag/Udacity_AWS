@@ -28,7 +28,7 @@ The overall schema can be resume below:
 </p> 
 
  ## How to run
- The project folder includes several files where the main important is ``dwh.cfg``, wher you have to fill the some informations, and save it as ``dwh.cfg`` in the project root folder.
+ 1. The project folder includes several files where the main important is ``dwh.cfg``, wher you have to fill the some informations, and save it as ``dwh.cfg`` in the project root folder.
 
  ````cfg
 [CLUSTER]
@@ -60,3 +60,20 @@ ACCESS_KEY=
 SECRET_KEY=
 ACCESS_REGION = 'us-west-2'
 ````
+2. Create an activate **python environment** with the dependencies listed on requirements.txt.
+
+````python
+python3 -m venv ~/.hello
+````
+
+Run the create_cluster script to set up the needed infrastructure for this project.
+
+$ python create_cluster.py
+
+Run the create_tables script to set up the database staging and analytical tables
+
+$ python create_tables.py
+
+Finally, run the etl script to extract data from the files in S3, stage it in redshift, and finally store it in the dimensional tables.
+
+$ python create_tables.py
