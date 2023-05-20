@@ -31,33 +31,32 @@ The overall schema can be resume below:
  The project folder includes several files where the main important is ``dwh.cfg``, wher you have to fill the some informations, and save it as ``dwh.cfg`` in the project root folder.
 
  ````cfg
- [CLUSTER]
-HOST=''
-DB_NAME=''
-DB_USER=''
-DB_PASSWORD=''
+[CLUSTER]
+HOST='dwhclusterproject.XXXXXXXXXXX.us-west-2.redshift.amazonaws.com'
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
 DB_PORT=5439
 
+[CLUSTER_PRO]
+#DWH_CLUSTER_TYPE=single-node
+DWH_CLUSTER_TYPE=multi-node
+#DWH_NUM_NODES=1
+DWH_NUM_NODES=4
+DWH_NODE_TYPE=dc2.large
+DWH_CLUSTER_IDENTIFIER=dwhClusterProject
+
 [IAM_ROLE]
-ARN=
+DWH_IAM_ROLE_NAME=dwhRole
+DWH_ARN=arn:aws:iam::XXXXXXXXXXXX:role/dwhRole
 
 [S3]
-LOG_DATA='s3://udacity-dend/log_data'
+LOG_DATA='s3://udacity-dend/log-data'
 LOG_JSONPATH='s3://udacity-dend/log_json_path.json'
-SONG_DATA='s3://udacity-dend/song_data'
+SONG_DATA='s3://udacity-dend/song-data'
 
 [AWS]
-KEY=
-SECRET=
-
-[DWH]
-DWH_CLUSTER_TYPE       = multi-node
-DWH_NUM_NODES          = 4
-DWH_NODE_TYPE          = dc2.large
-DWH_CLUSTER_IDENTIFIER = 
-DWH_DB                 = 
-DWH_DB_USER            = 
-DWH_DB_PASSWORD        = 
-DWH_PORT               = 5439
-DWH_IAM_ROLE_NAME      = 
+ACCESS_KEY=
+SECRET_KEY=
+ACCESS_REGION = 'us-west-2'
 ````
