@@ -22,7 +22,7 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
 SELECT
 	dim_artists.name,
     dim_songs.title,
-    COUNT(fact_songplays.songplay_id)
+	COUNT(fact_songplays.songplay_id) as number_of_songplays
 
 FROM fact_songplays 
 
@@ -35,7 +35,8 @@ where dim_time.year = 2018 and dim_users.gender = 'F'
 
 GROUP BY
 	dim_artists.name,  dim_songs.title
-order by count desc
+order by 
+    number_of_songplays desc
 limit 10
 ````
  
