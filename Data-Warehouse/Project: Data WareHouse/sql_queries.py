@@ -284,6 +284,6 @@ insert_table_queries = [user_table_insert, song_table_insert,
 insert_table_info = ['User table', 'Song table',
                      'Artist table', 'Time table', 'Song play table']
 sample_queries = [count_staging_events, count_staging_songs, year_song_count]
-sample_query_info = ['Return total count of the Staging Events table:',
-                     'Return total count of the Staging Songs table:',
-                     'List the total number of records released in a given year but not more than a 1000:']
+sample_query_info = ['Total count of the Staging Events table:',
+                     'Total count of the Staging Songs table:',
+                     'Total number of records released in a given year:']
