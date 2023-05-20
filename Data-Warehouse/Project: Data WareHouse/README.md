@@ -69,8 +69,10 @@ source  ~/.UdacityProject/bin/activate
 ````
 
 3. Run the ``create_iam_cluster.py`` script to set up all the infrastructure for this project.
-
+````python
 $ python create_iam_cluster.py
+````
+
 ````python
 W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python create_iam_cluster.py
 2023-05-19 14:58:37,119: INFO: 1.1 Creating a new IAM Role
