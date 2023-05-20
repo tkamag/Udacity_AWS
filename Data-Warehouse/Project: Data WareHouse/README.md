@@ -91,9 +91,18 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 2023-05-19 15:01:15,764: INFO: Connection OK.!!!
 ````
 
-Run the create_tables script to set up the database staging and analytical tables
-
+3. Run the ``create_tables script.py`` to set up the database staging and analytical tables
+````python
 $ python create_tables.py
+````
+
+``python
+W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python create_tables.py
+2023-05-19 15:04:19,376: INFO: Connecting to database....
+2023-05-19 15:04:19,377: INFO: Dropping any existing tables...
+2023-05-19 15:04:22,908: INFO: Creating dimensional and staging tables...
+2023-05-19 15:04:26,902: INFO: Completed creating all tables!
+````
 
 Finally, run the etl script to extract data from the files in S3, stage it in redshift, and finally store it in the dimensional tables.
 
