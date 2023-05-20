@@ -63,12 +63,31 @@ ACCESS_REGION = 'us-west-2'
 2. Create an activate **python environment** with the dependencies listed on requirements.txt.
 
 ````python
-python3 -m venv ~/.hello
+python3 -m venv ~/.UdacityProject
+
+source  ~/.UdacityProject/bin/activate
 ````
 
-Run the create_cluster script to set up the needed infrastructure for this project.
+3. Run the ``create_iam_cluster.py`` script to set up all the infrastructure for this project.
 
-$ python create_cluster.py
+$ python create_iam_cluster.py
+````log
+W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python create_iam_cluster.py
+2023-05-19 14:58:37,119: INFO: 1.1 Creating a new IAM Role
+2023-05-19 14:58:37,615: INFO: 1.2 Attaching Policy
+2023-05-19 14:58:37,779: INFO: 1.3 Get the IAM role ARN
+2023-05-19 14:58:37,911: INFO: IAM role created with ID:  arn:aws:iam:XXXXXXXXXXXX:role/dwhRole
+2023-05-19 14:58:37,911: INFO: Creating Redshift Cluster...
+2023-05-19 15:01:14,476: INFO: Redshift Cluster endpoint: dwhclusterproject.xxxxxxxxxxxx.us-west-2.redshift.amazonaws.com
+2023-05-19 15:01:14,476: INFO: Redshift Cluster arn:    arn:aws:iam::XXXXXXXXXXXX:role/dwhRole
+2023-05-19 15:01:14,477: INFO: Redshift Cluster dwhClusterProject was created !!!
+2023-05-19 15:01:14,477: INFO: Update clusters security group...
+'VpcId'
+2023-05-19 15:01:14,479: INFO: None
+2023-05-19 15:01:14,480: INFO: postgresql://dwhuser:XXXXXXXX@dwhclusterproject.XXXXXXXXXXXX.us-west-2.redshift.amazonaws.com:5439/dwh
+2023-05-19 15:01:15,763: INFO: Connected to the Cluster for testing.
+2023-05-19 15:01:15,764: INFO: Connection OK.!!!
+````
 
 Run the create_tables script to set up the database staging and analytical tables
 
