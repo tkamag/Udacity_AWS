@@ -110,7 +110,8 @@ $ python create_tables.py
 ````
 
 ````python
-2023-05-19 15:06:03,139: INFO: Connecting to database: <connection object at 0x000002322FAF2790; dsn: 'user=dwhuser password=xxx dbname=dwh host=dwhclusterproject.XXXXXXXXXXXX.us-west-2.redshift.amazonaws.com port=5439', closed: 0>
+2023-05-19 15:06:03,139: INFO: Connecting to database: <connection object at 0x000002322FAF2790; 
+dsn: 'user=dwhuser password=xxx dbname=dwh host=dwhclusterproject.XXXXXXXXXXXX.us-west-2.redshift.amazonaws.com port=5439', closed: 0>
 
 2023-05-19 15:06:03,140: INFO: Loading data from S3 into the staging tables...
 2023-05-19 15:06:03,140: INFO:
