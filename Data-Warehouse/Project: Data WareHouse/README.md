@@ -205,8 +205,18 @@ Running:
     SELECT COUNT(*) FROM dim_time
          6813 rows
  ````
+7. Answer to question.
 
-7. Delete your redshift cluster when finished. You also need to detach role policy and delete role created.
+Suppose we want to know **the count and order the most 10 songs title, and artist namelistened by women in 2018**.
+
+<p align="center">
+  <img src="./fig/query.png" alt=".." title="Optional title" width="80%" height="70%"/>  
+</p> 
+<p align="center">
+  <caption>System Architecture for AWS S3 to Redshift ETL</caption>  
+</p> 
+
+8. Delete your redshift cluster when finished. You also need to detach role policy and delete role created.
    
 ````python
 redshift.delete_cluster( ClusterIdentifier=DWH_CLUSTER_IDENTIFIER,  SkipFinalClusterSnapshot=True)
