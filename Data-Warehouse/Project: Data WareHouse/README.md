@@ -14,15 +14,17 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
  ## Schema for Song Play Analysis
  Using the song and event datasets, we've created a star schema optimized for queries on song play analysis. This includes the following tables. 
  ### Fact Table
-1. songplays - records in event data associated with song plays i.e. records with page NextSong
-* songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent
+1. **fact_songplays** - records in event data associated with song plays i.e. records with page NextSong
 ### Dimension Tables
-1. users - users in the app
-* user_id, first_name, last_name, gender, level
-2. songs - songs in music database
-* song_id, title, artist_id, year, duration
-3. artists - artists in music database
-* artist_id, name, location, lattitude, longitude
-4. time - timestamps of records in songplays broken down into specific units
-* start_time, hour, day, week, month, year, weekday
+1. **dim_users** - users in the app
+2. **dim_songs** - songs in music database
+3. **dim_artists** - artists in music database
+4. **dim_time** - timestamps of records in songplays broken down into specific units
+
+The overall schema can be resume below:
+
+<p align="center">
+  <img src="./fig/schema.png" alt=".." title="Optional title" width="66%" height="70%"/>  
+</p> 
+
  ## How to run
