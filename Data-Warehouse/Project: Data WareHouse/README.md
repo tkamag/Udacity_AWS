@@ -18,11 +18,11 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
  Buy using a **star schema**, we can easily answer some suqestion like /
  * Count and order the most 10 songs title, and artist namelistened by women in 2018.
 
-````python
+````SQL
 SELECT
 	dim_artists.name,
     dim_songs.title,
-	COUNT(fact_songplays.songplay_id)
+    COUNT(fact_songplays.songplay_id)
 
 FROM fact_songplays 
 
