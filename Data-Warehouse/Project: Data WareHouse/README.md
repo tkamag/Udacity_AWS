@@ -24,7 +24,7 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
 The overall schema can be resume below:
 
 <p align="center">
-  <img src="./fig/schema.png" alt=".." title="Optional title" width="66%" height="70%"/>  
+  <img src="./fig/schema.png" alt=".." title="Optional title" width="80%" height="70%"/>  
 </p> 
 
  ## How to run
