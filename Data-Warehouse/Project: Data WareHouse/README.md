@@ -91,7 +91,7 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 2023-05-19 15:01:15,764: INFO: Connection OK.!!!
 ````
 
-3. Run the ``create_tables script.py`` to set up the database staging and analytical tables
+4. Run the ``create_tables script.py`` to set up the database staging and analytical tables
 ````python
 $ python create_tables.py
 ````
@@ -104,7 +104,7 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 2023-05-19 15:04:26,902: INFO: Completed creating all tables!
 ````
 
-1. Finally, run the ``etl.py`` script to extract data from the files in S3, stage it in redshift, and store it in the dimensional tables.
+5. Finally, run the ``etl.py`` script to extract data from the files in S3, stage it in redshift, and store it in the dimensional tables.
 ````python
 $ python create_tables.py
 ````
@@ -139,3 +139,47 @@ Loading data from Song play table...
 2023-05-19 17:18:07,284: INFO: Completed inserting data into the dimensional tables!
 2023-05-19 17:18:07,287: INFO: Completed loading and insering data in all tables!
 ````
+
+6. For some uses cases analysis(like counting the numbers of rows in each tables) , run ``query_results.py``.
+````python
+$ python query_results.py
+````
+
+````python
+W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python query_results.py
+2023-05-19 19:21:40,576: INFO:
+Running:
+
+    SELECT COUNT(*) FROM staging_events
+         8056 rows
+2023-05-19 19:21:40,764: INFO:
+Running:
+
+    SELECT COUNT(*) FROM staging_songs
+         385252 rows
+2023-05-19 19:21:40,952: INFO:
+Running:
+
+    SELECT COUNT(*) FROM fact_songplays
+         6962 rows
+2023-05-19 19:21:41,134: INFO:
+Running:
+
+    SELECT COUNT(*) FROM dim_users
+         104 rows
+2023-05-19 19:21:41,318: INFO:
+Running:
+
+    SELECT COUNT(*) FROM dim_songs
+         384995 rows
+2023-05-19 19:21:41,506: INFO:
+Running:
+
+    SELECT COUNT(*) FROM dim_artists
+         45266 rows
+2023-05-19 19:21:41,692: INFO:
+Running:
+
+    SELECT COUNT(*) FROM dim_time
+         6813 rows
+ ````
