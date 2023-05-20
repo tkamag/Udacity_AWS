@@ -96,7 +96,7 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 $ python create_tables.py
 ````
 
-``python
+````python
 W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Project Data Warehouse>python create_tables.py
 2023-05-19 15:04:19,376: INFO: Connecting to database....
 2023-05-19 15:04:19,377: INFO: Dropping any existing tables...
@@ -104,6 +104,36 @@ W:\MOOC\Udacity\AWS Data Engineering with AWS\02.Cloud Data Warehouses\06.Projec
 2023-05-19 15:04:26,902: INFO: Completed creating all tables!
 ````
 
-Finally, run the etl script to extract data from the files in S3, stage it in redshift, and finally store it in the dimensional tables.
-
+1. Finally, run the ``etl.py`` script to extract data from the files in S3, stage it in redshift, and store it in the dimensional tables.
+````python
 $ python create_tables.py
+````
+
+````python
+2023-05-19 15:06:03,139: INFO: Connecting to database: <connection object at 0x000002322FAF2790; dsn: 'user=dwhuser password=xxx dbname=dwh host=dwhclusterproject.XXXXXXXXXXXX.us-west-2.redshift.amazonaws.com port=5439', closed: 0>
+
+2023-05-19 15:06:03,140: INFO: Loading data from S3 into the staging tables...
+2023-05-19 15:06:03,140: INFO:
+    COPY staging_events FROM 's3://udacity-dend/log-data'
+    credentials 'aws_iam_role=arn:aws:iam::XXXXXXXXXXXX:role/dwhRole'
+    region 'us-west-2'
+    format as json 's3://udacity-dend/log_json_path.json';
+
+2023-05-19 15:06:03,140: INFO: Currently loading the Log event dataset from S3 to the staging table...
+2023-05-19 15:06:34,046: INFO:
+    COPY staging_songs FROM 's3://udacity-dend/song-data'
+    credentials 'aws_iam_role=arn:aws:iam::XXXXXXXXXXXX:role/dwhRole'
+    region 'us-west-2'
+    format as json 'auto';
+
+2023-05-19 15:06:34,047: INFO: Currently loading the Song dataset from S3 to the staging table...
+2023-05-19 17:17:04,416: INFO: Loading all data into the staging tables is completed!
+2023-05-19 17:17:04,423: INFO: Beginning loading of dimensional data from staging to production analytics tables...
+Loading data from User table...
+Loading data from Song table...
+Loading data from Artist table...
+Loading data from Time table...
+Loading data from Song play table...
+2023-05-19 17:18:07,284: INFO: Completed inserting data into the dimensional tables!
+2023-05-19 17:18:07,287: INFO: Completed loading and insering data in all tables!
+````
