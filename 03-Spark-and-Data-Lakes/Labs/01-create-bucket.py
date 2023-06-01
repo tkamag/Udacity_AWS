@@ -39,5 +39,5 @@ if __name__ == '__main__':
     logger.info(f'Creating a Bucket...')
  
     logger.info(
-        f'Bucket created with:  \nName: \t {create_a_bucket(BUCKET_NAME)}')
-    logger.info(f'Bucket Created')
+        f'Bucket created with: Name: {create_a_bucket(BUCKET_NAME)}')
+    logger.info(f'Bucket Created.')
