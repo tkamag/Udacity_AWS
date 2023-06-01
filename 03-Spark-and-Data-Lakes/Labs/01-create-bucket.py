@@ -20,26 +20,24 @@ def create_a_bucket(bucket_name):
     s3_client = boto3.client('s3',
                           aws_access_key_id=AWS_ACCESS_KEY_ID,
                           aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-                          region_name=AWS_REGION,
-                          aws_session_token=AWS_SESSION_TOKEN)
+                          region_name=AWS_REGION)
+                         #, aws_session_token=AWS_SESSION_TOKEN)
 
     try:
-        response = client.create_bucket(
-                        Bucket='examplebucket',
-                        CreateBucketConfiguration={
-                        'LocationConstraint': 'eu-east-1',
-                },
+        response = s3_client.create_bucket(
+                        Bucket=bucket_name,
+
             )
     except Exception as e:
         logger.info(f'Exeption: {e}')
-    return response
+    return pprint(response)
 
 if __name__ == '__main__':
     # Constants
     BUCKET_NAME='tka-lake-house'
-    a=create_a_bucket()
+    #a=create_a_bucket(BUCKET_NAME)
     logger.info(f'Creating a Bucket...')
  
     logger.info(
-        f'\nBucket created with:  \nName: \t {a}')
+        f'\nBucket created with:  \nName: \t {create_a_bucket(BUCKET_NAME)}')
     logger.info(f'Bucket Created...')
