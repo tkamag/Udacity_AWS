@@ -30,7 +30,7 @@ def create_a_bucket(bucket_name):
             )
     except Exception as e:
         logger.info(f'Exeption: {e}')
-    return pprint(response)
+    return json.dumps((response.get('Location')))
 
 if __name__ == '__main__':
     # Constants
@@ -39,5 +39,5 @@ if __name__ == '__main__':
     logger.info(f'Creating a Bucket...')
  
     logger.info(
-        f'\nBucket created with:  \nName: \t {create_a_bucket(BUCKET_NAME)}')
-    logger.info(f'Bucket Created...')
+        f'Bucket created with:  \nName: \t {create_a_bucket(BUCKET_NAME)}')
+    logger.info(f'Bucket Created')
