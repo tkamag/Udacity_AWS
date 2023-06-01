@@ -32,6 +32,27 @@ def create_a_bucket(bucket_name):
         logger.info(f'Exeption: {e}')
     return json.dumps((response.get('Location')))
 
+
+def return_vpc_param():
+    """
+    Return parameters of default VPC.
+    """
+    vpc_client = boto3.client('ec2',
+                    aws_access_key_id=AWS_ACCESS_KEY_ID,
+                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                    region_name=AWS_REGION)
+    try:
+        #logger.info(f'Describing VPC...')
+        response = vpc_client.describe_vpcs()
+    except ClientError as e:
+        logger.exception(f'Could not describe VPC : {e}')
+        #pprint(vpc_client.describe_vpcs()['Vpcs'])
+    for elem in vpc_client.describe_vpcs()['Vpcs']:
+    #    if elem.get('InstanceTenancy') == 'default':
+        return elem.get('VpcId')
+    #return pprint(response)
+        
+
 if __name__ == '__main__':
     # Constants
     BUCKET_NAME='tka-lake-house'
@@ -41,3 +62,5 @@ if __name__ == '__main__':
     logger.info(
         f'Bucket created with: Name: {create_a_bucket(BUCKET_NAME)}')
     logger.info(f'Bucket Created.')
+    logger.info(f'Reading Default VPC ID...')
+    logger.info(f'Default VPC ID: \t {return_vpc_param()}')
