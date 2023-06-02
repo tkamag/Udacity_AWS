@@ -101,7 +101,7 @@ if __name__ == '__main__':
     BUCKET_NAME='tka-lake-house'
     VpcId=return_vpc_param()
     RouteTableIds=return_describe_route()
-    #a=create_a_bucket(BUCKET_NAME)
+
     logger.info(f'Bucket created with Name: {create_a_bucket(BUCKET_NAME)}')
     logger.info(f'Default VPC ID: {return_vpc_param()}')
     logger.info(f'Default Route ID: {return_describe_route()}')
