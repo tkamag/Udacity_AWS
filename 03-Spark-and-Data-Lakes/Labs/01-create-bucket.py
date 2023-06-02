@@ -69,8 +69,10 @@ def return_describe_route():
     except ClientError as e:
         logger.exception(f'Could not describe route : {e}')
         #pprint(vpc_client.describe_vpcs()['Vpcs'])
-    for elem in response.get('RouteTables'):
-        return elem.get('RouteTableId')
+    return  [elem['RouteTableId'] for elem in response.get('RouteTables')]
+    #for elem in response.get('RouteTables'):
+        #return elem.get('RouteTableId')
+        #return elem['RouteTableId']
     #return pprint(response)
     
     
@@ -85,13 +87,12 @@ def return_vpc_endpoint(VpcId, RouteTableIds):
     try:
         #logger.info(f'Describing VPC...')
         response = ec2_client.create_vpc_endpoint(VpcId=VpcId, 
-                                                  RouteTableIds=['rtb-0d36d9de5c5a19315'],
+                                                  RouteTableIds=RouteTableIds,
                                                   ServiceName=VPC_S3_ENDPOINT)
     except Exception as e:
         logger.info(f'Exeption: {e}')
         #pprint(vpc_client.describe_vpcs()['Vpcs'])
 
-    #return response.get('VpcEndpoint')
     return response.get('VpcEndpoint').get('VpcEndpointId')
     
     
@@ -101,8 +102,8 @@ if __name__ == '__main__':
     VpcId=return_vpc_param()
     RouteTableIds=return_describe_route()
     #a=create_a_bucket(BUCKET_NAME)
-    logger.info(
-        f'Bucket created with Name: {create_a_bucket(BUCKET_NAME)}')
-    logger.info(f'Default VPC ID: \t {return_vpc_param()}')
-    logger.info(f'Default Route ID: \t {return_describe_route()}')
-    logger.info(f'Vpc Endpoint: \t {return_vpc_endpoint(VpcId, RouteTableIds)}')
+    logger.info(f'Bucket created with Name: {create_a_bucket(BUCKET_NAME)}')
+    logger.info(f'Default VPC ID: {return_vpc_param()}')
+    logger.info(f'Default Route ID: {return_describe_route()}')
+    logger.info(f'Vpc Endpoint: {return_vpc_endpoint(VpcId, RouteTableIds)}')
+ 
