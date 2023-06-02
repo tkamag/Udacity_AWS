@@ -13,6 +13,7 @@ AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
 AWS_REGION=os.environ['DEFAULT_REGION']
 AWS_SESSION_TOKEN=os.environ['AWS_SESSION_TOKEN']
+VPC_S3_ENDPOINT = f"com.amazonaws.{AWS_REGION}.s3"
 
 def create_a_bucket(bucket_name):
     """
@@ -84,21 +85,24 @@ def return_vpc_endpoint(VpcId, RouteTableIds):
     try:
         #logger.info(f'Describing VPC...')
         response = ec2_client.create_vpc_endpoint(VpcId=VpcId, 
-                                                  RouteTableIds=list(RouteTableIds),
-                                                  ServiceName='com.amazon.us-east-1.s3')
+                                                  RouteTableIds=['rtb-0d36d9de5c5a19315'],
+                                                  ServiceName=VPC_S3_ENDPOINT)
     except Exception as e:
         logger.info(f'Exeption: {e}')
         #pprint(vpc_client.describe_vpcs()['Vpcs'])
 
-    return response.get('VpcEndpoint')
+    #return response.get('VpcEndpoint')
+    return response.get('VpcEndpoint').get('VpcEndpointId')
     
     
 if __name__ == '__main__':
     # Constants
     BUCKET_NAME='tka-lake-house'
+    VpcId=return_vpc_param()
+    RouteTableIds=return_describe_route()
     #a=create_a_bucket(BUCKET_NAME)
     logger.info(
         f'Bucket created with Name: {create_a_bucket(BUCKET_NAME)}')
     logger.info(f'Default VPC ID: \t {return_vpc_param()}')
     logger.info(f'Default Route ID: \t {return_describe_route()}')
-    logger.info(f'Vpc Endpoint: \t {return_vpc_endpoint(VpcId=return_vpc_param(), RouteTableIds=return_describe_route())}')
+    logger.info(f'Vpc Endpoint: \t {return_vpc_endpoint(VpcId, RouteTableIds)}')
