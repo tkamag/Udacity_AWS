@@ -103,6 +103,10 @@ def create_iam_role(iam_client, GLUE_S3_ROLE_NAME):
     '''
     Creates IAM Role for Glue, to allow it to use AWS services
     '''
+    iam_client = boto3.client('iam',
+                       aws_access_key_id=AWS_ACCESS_KEY_ID,
+                       aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                       region_name=AWS_REGION)
     
     assume_policy = json.dumps({
         "Version": "2012-10-17",
@@ -122,13 +126,23 @@ def create_iam_role(iam_client, GLUE_S3_ROLE_NAME):
     })
     # Create two inline policies GlueAccess  and  S3Access 
     
-    s3_document = json.dumps({
-		"Version":"2012-10-17",
-		"Statement":{
-			"Effect":"Allow",
-			"Action":"s3:*",
-			"Resource":"*"}
-			})
+    s3_document = json.dumps({ 
+                        "Version": "2012-10-17", 
+                        "Statement": [ 
+                            { 
+                                "Sid": "ListObjectsInBucket", 
+                                "Effect": "Allow", 
+                                "Action": [ "s3:ListBucket" ], 
+                                "Resource": [ 
+                                     "arn:aws:s3:::tka-lake-house" ] }, 
+                            { 
+                                 "Sid": "AllObjectActions", 
+                                "Effect": "Allow", 
+                                "Action": "s3:*Object", 
+                                "Resource": [ 
+                                     "arn:aws:s3:::tka-lake-house/*" ] } 
+                                                    ] 
+                                                })
   
     try:
         logger.info("1.1 - Creating a new IAM Role")
@@ -144,9 +158,9 @@ def create_iam_role(iam_client, GLUE_S3_ROLE_NAME):
 
     try:
         logger.info("1.2 - Attaching Policy")
-        response1 = client.put_role_policy(
+        response1 = iam_client.put_role_policy(
                     RoleName=GLUE_S3_ROLE_NAME,
-                    PolicyDocument='{"Version":"2012-10-17","Statement":{"Effect":"Allow","Action":"s3:*","Resource":"*"}}',
+                    PolicyDocument=s3_document,
                     PolicyName='S3AccessPolicy',
             )
     except Exception as e:
@@ -168,6 +182,7 @@ if __name__ == '__main__':
                        aws_access_key_id=AWS_ACCESS_KEY_ID,
                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                        region_name=AWS_REGION)
+    
     VpcId=return_vpc_param()
     RouteTableIds=return_describe_route()
 
@@ -175,5 +190,5 @@ if __name__ == '__main__':
     logger.info(f'Default VPC ID: {return_vpc_param()}')
     logger.info(f'Default Route ID: {return_describe_route()}')
     #logger.info(f'Vpc Endpoint: {return_vpc_endpoint(VpcId, RouteTableIds)}')
-    logger.info(f'IAM role created with ID:  {create_iam_role(iam_client, GLUE_S3_ROLE_NAME)}')
+    logger.info(f'IAM role created with ID: {create_iam_role(iam_client, GLUE_S3_ROLE_NAME)}')
  
