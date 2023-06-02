@@ -134,15 +134,108 @@ def create_iam_role(iam_client, GLUE_S3_ROLE_NAME):
                                 "Effect": "Allow", 
                                 "Action": [ "s3:ListBucket" ], 
                                 "Resource": [ 
-                                     "arn:aws:s3:::tka-lake-house" ] }, 
+                                     f"arn:aws:s3:::{BUCKET_NAME}" ] }, 
                             { 
                                  "Sid": "AllObjectActions", 
                                 "Effect": "Allow", 
                                 "Action": "s3:*Object", 
                                 "Resource": [ 
-                                     "arn:aws:s3:::tka-lake-house/*" ] } 
-                                                    ] 
-                                                })
+                                     f"arn:aws:s3:::{BUCKET_NAME}/*" ] } 
+                                     ] })
+    
+    glue_document = json.dumps({
+                                "Version": "2012-10-17",
+                                "Statement": [
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "glue:*",
+                                            "s3:GetBucketLocation",
+                                            "s3:ListBucket",
+                                            "s3:ListAllMyBuckets",
+                                            "s3:GetBucketAcl",
+                                            "ec2:DescribeVpcEndpoints",
+                                            "ec2:DescribeRouteTables",
+                                            "ec2:CreateNetworkInterface",
+                                            "ec2:DeleteNetworkInterface",
+                                            "ec2:DescribeNetworkInterfaces",
+                                            "ec2:DescribeSecurityGroups",
+                                            "ec2:DescribeSubnets",
+                                            "ec2:DescribeVpcAttribute",
+                                            "iam:ListRolePolicies",
+                                            "iam:GetRole",
+                                            "iam:GetRolePolicy",
+                                            "cloudwatch:PutMetricData"
+                                        ],
+                                        "Resource": [
+                                            "*"
+                                        ]
+                                    },
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "s3:CreateBucket",
+                                            "s3:PutBucketPublicAccessBlock"
+                                        ],
+                                        "Resource": [
+                                            "arn:aws:s3:::aws-glue-*"
+                                        ]
+                                    },
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "s3:GetObject",
+                                            "s3:PutObject",
+                                            "s3:DeleteObject"
+                                        ],
+                                        "Resource": [
+                                            "arn:aws:s3:::aws-glue-*/*",
+                                            "arn:aws:s3:::*/*aws-glue-*/*"
+                                        ]
+                                    },
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "s3:GetObject"
+                                        ],
+                                        "Resource": [
+                                            "arn:aws:s3:::crawler-public*",
+                                            "arn:aws:s3:::aws-glue-*"
+                                        ]
+                                    },
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "logs:CreateLogGroup",
+                                            "logs:CreateLogStream",
+                                            "logs:PutLogEvents",
+                                            "logs:AssociateKmsKey"
+                                        ],
+                                        "Resource": [
+                                            "arn:aws:logs:*:*:/aws-glue/*"
+                                        ]
+                                    },
+                                    {
+                                        "Effect": "Allow",
+                                        "Action": [
+                                            "ec2:CreateTags",
+                                            "ec2:DeleteTags"
+                                        ],
+                                        "Condition": {
+                                            "ForAllValues:StringEquals": {
+                                                "aws:TagKeys": [
+                                                    "aws-glue-service-resource"
+                                                ]
+                                            }
+                                        },
+                                        "Resource": [
+                                            "arn:aws:ec2:*:*:network-interface/*",
+                                            "arn:aws:ec2:*:*:security-group/*",
+                                            "arn:aws:ec2:*:*:instance/*"
+                                        ]
+                                    }
+                                ]
+                            })
   
     try:
         logger.info("1.1 - Creating a new IAM Role")
@@ -158,17 +251,24 @@ def create_iam_role(iam_client, GLUE_S3_ROLE_NAME):
 
     try:
         logger.info("1.2 - Attaching Policy")
-        response1 = iam_client.put_role_policy(
+        s3_response = iam_client.put_role_policy(
                     RoleName=GLUE_S3_ROLE_NAME,
                     PolicyDocument=s3_document,
-                    PolicyName='S3AccessPolicy',
-            )
+                    PolicyName='S3Access',)
+    except Exception as e:
+        logger.info(f'Exeption: {e}')
+    
+    try:    
+        glue_response = iam_client.put_role_policy(
+                    RoleName=GLUE_S3_ROLE_NAME,
+                    PolicyDocument=glue_document,
+                    PolicyName='GlueAccess',)           
     except Exception as e:
         logger.info(f'Exeption: {e}')
     #logger.info("1.3 - Get IAM role ARN")
     #roleArn = iam_client.get_role(RoleName=DWH_IAM_ROLE_NAME)['Role']['Arn']
 
-    return response1
+    return response['Role']['Arn']
 
    
 if __name__ == '__main__':
