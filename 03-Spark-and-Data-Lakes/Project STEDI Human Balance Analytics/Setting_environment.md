@@ -40,7 +40,7 @@ aws s3 sync ./step_trainer/  s3://YOUR_BUCKET/step_trainer/landing
 * phone
 * sharewithfriendsasofdate
   
-1. **Step Trainer** Records (data from the motion sensor):
+**Step Trainer** Records (data from the motion sensor):
 
 [Data Download URL](https://github.com/udacity/nd027-Data-Engineering-Data-Lakes-AWS-Exercises/tree/main/project/starter/step_trainer)
 
