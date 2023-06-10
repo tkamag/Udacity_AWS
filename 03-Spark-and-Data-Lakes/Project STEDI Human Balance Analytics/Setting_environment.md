@@ -13,7 +13,7 @@ To accomplish this project, you have to set up an environment.
 
 3. Create a bucket in your AWS account, lets call it ``YOUR_BUCKET``.
    
-4. Now you need to synchronize bucket create in the previous step. From the location  where you've extracted files, execute those three commands:
+4. Now you need to synchronize bucket create in the previous step. From the location where you've extracted files, execute those three commands:
 
 ````sh
 aws s3 sync ./customers/     s3://YOUR_BUCKET/customer/landing
