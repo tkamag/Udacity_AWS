@@ -65,3 +65,9 @@ aws s3 sync ./step_trainer/  s3://YOUR_BUCKET/step_trainer/landing
 * x
 * y
 * z
+# C. Requirements
+To simulate the data coming from the various sources, you will need to create your own S3 directories for customer_landing, step_trainer_landing, and accelerometer_landing zones, and copy the data there as a starting point.
+
+1. We have decided you want to get a feel for the data you are dealing with in a semi-structured format, so we've decided to create two Glue tables for the two landing zones. We will share your ``customer_landing.sql`` and our ``accelerometer_landing.sql`` script in git.
+
+2. Query those tables using Athena, and take a screenshot of each one showing the resulting data. Name the screenshots ``customer_landing(.png,.jpeg, etc.)`` and ``accelerometer_landing(.png,.jpeg, etc.)``.
