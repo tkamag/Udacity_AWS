@@ -20,7 +20,7 @@ WITH SERDEPROPERTIES (
         'mapping' = 'TRUE')
 
 STORED AS 
-INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'  
+INPUTFORMAT  'org.apache.hadoop.mapred.TextInputFormat'  
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 
 LOCATION 's3://udacity-project-lake-house/customer/landing/'
