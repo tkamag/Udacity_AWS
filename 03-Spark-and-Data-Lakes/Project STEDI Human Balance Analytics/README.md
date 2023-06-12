@@ -30,3 +30,8 @@ Finally, you need to create two Glue Studio jobs that do the following tasks:
 1. Read the Step Trainer IoT data stream (S3) and populate a Trusted Zone Glue Table called ``step_trainer_trusted`` that contains the Step Trainer Records data for customers who have accelerometer data and have agreed to share their data for research (customers_curated).
 
 2. Create an aggregated table that has each of the Step Trainer Readings, and the associated accelerometer reading data for the same timestamp, but only for customers who have agreed to share their data, and make a glue table called ``machine_learning_curated``.
+
+# 1. Check your world
+1. Create a Python script that sanitizes the Cutomer data from the Website (landing Zone) and only the Customer Records who agreed to share their data for research purposes(Trsuted Zone)- creating a Glue table called customer_trusted.
+
+Customer table have a field called ``sharewithresearchasofdate`` for **customers who share their data for research purposes**. We will only retain values for which this field is non-empty, i.e **sharewithresearchasofdate** !=0
