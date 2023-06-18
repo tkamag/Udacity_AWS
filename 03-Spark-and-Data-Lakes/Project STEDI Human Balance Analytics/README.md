@@ -30,7 +30,7 @@ Here, we will create a Python script that sanitize the Customer data from the We
   <caption>Customer Trusted</caption>  
 </p> 
 
-## B.3 Accelerometer landing and trusted
+## B.2 Accelerometer landing and trusted
 Here, we will create a Python script that sanitize the Accelerometer data from the Mobile App (Landing Zone) and only store Accelerometer readings from the customer who agreed to share their data for research purposes (Trusted Zone) - creating a Glue Table called ``accelerometer_trusted``.
 
 * [accelerometer_landing.sql](./Scrpits/02-accelerometer_landing.sql)
@@ -42,7 +42,7 @@ Here, we will create a Python script that sanitize the Accelerometer data from t
   <caption>Accelerometer Landing</caption>  
 </p> 
 
-* [customer_trusted.sql](./Scrpits/02-accelerometer_trusted.sql)
+* [accelerometer_trusted.sql](./Scrpits/02-accelerometer_trusted.sql)
 
 <p align="center">
   <img src="./fig/02-accelerometer_trusted.png" alt=".." title="Optional title" width="96%" height="70%"/>  
@@ -50,3 +50,23 @@ Here, we will create a Python script that sanitize the Accelerometer data from t
 <p align="center">
   <caption>Accelerometer Trusted</caption>  
 </p> 
+
+## B.3 Customer curated.
+Here, we will create a Python script that sanitize the Customer data (trusted Zone)from the Website (Landing Zone) and creates a Glue table (Curated Zone) that only includes customers who have acceloerometer data and have agreed to share their data for research called ``customers_curated``.
+
+* [customer_landing.sql](./Scrpits/03-customer_curated.sql)
+
+<p align="center">
+  <img src="./fig/03-customer_curated.png" alt=".." title="Optional title" width="96%" height="70%"/>  
+</p> 
+<p align="center">
+  <caption>Customer Curated</caption>  
+</p> 
+
+## B.4 Step Trainer Trusted.
+Here, we will create a Python script that reads Trainer IoT data stream (S3) and pipulates a Trusted Zone Glue Table called ``step_trainer_trusted`` containing thee Step Trainer Records data for customers who have agreed to share their data for research called ``customers_curated``.
+
+* [customer_landing.sql](./Scrpits/04-step_trainer_trusted.py)
+
+
+
