@@ -27,5 +27,5 @@ Here, we will create a Python script that sanitize the Customer data from the We
   <img src="./fig/01-customer_trusted.png" alt=".." title="Optional title" width="96%" height="70%"/>  
 </p> 
 <p align="center">
-  <caption>Customer Landing</caption>  
+  <caption>Customer Trusted</caption>  
 </p> 
