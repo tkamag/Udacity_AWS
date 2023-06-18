@@ -15,7 +15,7 @@ Here, we will create a Python script that sanitize the Customer data from the We
 * [customer_landing.sql](./Scrpits/01-customer_landing.sql)
 
 <p align="center">
-  <img src="./fig/01-customer_landing.png" alt=".." title="Optional title" width="66%" height="70%"/>  
+  <img src="./fig/01-customer_landing.png" alt=".." title="Optional title" width="96%" height="70%"/>  
 </p> 
 <p align="center">
   <caption>Customer Landing</caption>  
