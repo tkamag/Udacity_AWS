@@ -9,5 +9,6 @@ Some of the early adopters have agreed to share their data for research purposes
 As a data engineer on the STEDI Step Trainer team, I will extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS so that Data Scientists can train the learning model by creating 05 AWS Glue Jobs.
 
 # B. Files and Screenshots
-## B.1Ccustomer trusted
-Sanitize the Customer data from the Website (Landing Zone) and only store the Customer Records who agreed to share their data for research purposes (Trusted Zone) - creating a Glue Table called customer_trusted.
+## B.1 Ccustomer trusted
+Here, we will create a Python script that sanitize the Customer data from the Website (Landing Zone) and only store the Customer Records who agreed to share their data for research purposes (Trusted Zone) - creating a Glue Table called ``customer_trusted``.
+
