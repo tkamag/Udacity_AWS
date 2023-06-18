@@ -63,10 +63,15 @@ Here, we will create a Python script that sanitize the Customer data (trusted Zo
   <caption>Customer Curated</caption>  
 </p> 
 
-## B.4 Step Trainer Trusted.
-Here, we will create a Python script that reads Trainer IoT data stream (S3) and pipulates a Trusted Zone Glue Table called ``step_trainer_trusted`` containing thee Step Trainer Records data for customers who have agreed to share their data for research called ``customers_curated``.
+## B.4 Step trainer trusted.
+Here, we will create a Python script that reads Trainer IoT data stream (S3) and pipulates a Trusted Zone Glue Table called ``step_trainer_trusted`` containing thee Step Trainer Records data for customers who have agreed to share their data and populates a glue table called ``machine_learning_curated``
 
-* [customer_landing.sql](./Scrpits/04-step_trainer_trusted.py)
+* [step_trainer_trusted.py](./Scrpits/04-step_trainer_trusted.py)
+
+## B.5 Machine learning curated
+Finally, we will create a Python script that creates an aggregated table that has each of the Step Trainer readings, and the associated accelerometer reading data for the same timestamp, but only for customers who have agreed to share their data for research called ``customers_curated``.
+
+* [machine_learning_curated](./Scrpits/05-machine_learning_curated.py)
 
 
 
