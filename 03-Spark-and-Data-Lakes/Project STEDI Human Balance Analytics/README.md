@@ -9,40 +9,8 @@ Some of the early adopters have agreed to share their data for research purposes
 As a data engineer on the STEDI Step Trainer team, I will extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS so that Data Scientists can train the learning model by creating 05 AWS Glue Jobs.
 
 # B. Files and Screenshots
-## B.1 Ccustomer trusted
+## B.1 Customer trusted
 Here, we will create a Python script that sanitize the Customer data from the Website (Landing Zone) and only store the Customer Records who agreed to share their data for research purposes (Trusted Zone) - creating a Glue Table called ``customer_trusted``.
-````sql
-CREATE EXTERNAL TABLE `customer_landing`(
-  `customername` string COMMENT 'from deserializer', 
-  `email` string COMMENT 'from deserializer', 
-  `phone` string COMMENT 'from deserializer', 
-  `birthday` string COMMENT 'from deserializer', 
-  `serialnumber` string COMMENT 'from deserializer', 
-  `registrationdate` bigint COMMENT 'from deserializer', 
-  `lastupdatedate` bigint COMMENT 'from deserializer', 
-  `sharewithresearchasofdate` bigint COMMENT 'from deserializer', 
-  `sharewithpublicasofdate` bigint COMMENT 'from deserializer', 
-  `sharewithfriendsasofdate` bigint COMMENT 'from deserializer')
-ROW FORMAT SERDE 
-  'org.openx.data.jsonserde.JsonSerDe' 
-WITH SERDEPROPERTIES ( 
-  'paths'='birthDay,customerName,email,lastUpdateDate,phone,registrationDate,serialNumber,shareWithFriendsAsOfDate,shareWithPublicAsOfDate,shareWithResearchAsOfDate') 
-STORED AS INPUTFORMAT 
-  'org.apache.hadoop.mapred.TextInputFormat' 
-OUTPUTFORMAT 
-  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION
-  's3://udacity-project-lake-house/customer/landing/'
-TBLPROPERTIES (
-  'CrawlerSchemaDeserializerVersion'='1.0', 
-  'CrawlerSchemaSerializerVersion'='1.0', 
-  'UPDATED_BY_CRAWLER'='crawler_customer_landing', 
-  'averageRecordSize'='285', 
-  'classification'='json', 
-  'compressionType'='none', 
-  'objectCount'='764', 
-  'recordCount'='759702', 
-  'sizeKey'='218865876', 
-  'typeOfData'='file')
-  
-  ````
+
+* [customer_landing.sql](./Scrpits/01-customer_landing.sql)
+* [customer_landing.sql](./fig/01-customer_landing.png)
