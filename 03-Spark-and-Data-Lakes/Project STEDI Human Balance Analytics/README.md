@@ -13,4 +13,10 @@ As a data engineer on the STEDI Step Trainer team, I will extract the data produ
 Here, we will create a Python script that sanitize the Customer data from the Website (Landing Zone) and only store the Customer Records who agreed to share their data for research purposes (Trusted Zone) - creating a Glue Table called ``customer_trusted``.
 
 * [customer_landing.sql](./Scrpits/01-customer_landing.sql)
-* [customer_landing.sql](./fig/01-customer_landing.png)
+
+<p align="center">
+  <img src="./fig/01-customer_landing.png" alt=".." title="Optional title" width="66%" height="70%"/>  
+</p> 
+<p align="center">
+  <caption>Customer Landing</caption>  
+</p> 
