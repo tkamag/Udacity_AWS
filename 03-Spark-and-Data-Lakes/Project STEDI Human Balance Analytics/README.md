@@ -51,6 +51,7 @@ Here, we will create a Python script that sanitize the Accelerometer data from t
   <caption>Accelerometer Trusted</caption>  
 </p> 
 
+
 ## B.3 Customer curated.
 Here, we will create a Python script that sanitize the Customer data (trusted Zone)from the Website (Landing Zone) and creates a Glue table (Curated Zone) that only includes customers who have acceloerometer data and have agreed to share their data for research called ``customers_curated``.
 
