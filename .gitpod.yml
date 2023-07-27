@@ -1,6 +1,6 @@
 ---
 # image:
-#   file: .gitpod.Dockerfile
+#  file: .gitpod.Dockerfile
 tasks:
   - name: aws-cli
     env:
