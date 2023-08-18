@@ -35,7 +35,7 @@ At the end, the following DAG was choosen:
 ## File's structure
 
 <p align="center">
-  <img src="./fig/tree.png" alt=".." title="Optional title" width="80%" height="70%"/>  
+  <img src="./fig/tree.png" alt=".." title="Optional title" width="50%" height="70%"/>  
 </p> 
 
 * **Project: Data Pipelines with Airflow** is the main directory of our project witch contains sub-folders like:
