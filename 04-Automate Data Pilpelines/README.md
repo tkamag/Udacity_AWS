@@ -57,3 +57,11 @@ At the end, the following DAG was choosen:
 
 ## Creating the DAG
 As mentionned, the dag located in the **dag's folder**. you just need to execute the dasg file with all his dependencies.
+
+In order to completely create the project, we've added an initial table creation block.
+
+This initial block consist of creating all table.
+
+<p align="center">
+  <img src="./fig/create_table.png" alt=".." title="Optional title" width="50%" height="70%"/>  
+</p> 
