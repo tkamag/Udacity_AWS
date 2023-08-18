@@ -15,43 +15,45 @@ As a data engineer, our assignment is to build an ``ETL pipeline`` that extracts
  Using the song and event datasets, we've created a **star schema** optimized for queries on song play analysis. 
  The purpose of a **star schemas** is to denormalize the data, which means adding redundant columns to dimension tables to make querying and working with the data faster and easier. The goal is to trade some redundancy (duplication of data) in the data model for increased query speed, by avoiding computationally expensive join operations.
 
-  Buy using a **star schema**, we can easily answer some suqestion like /
- * Count and order the most 10 songs title, and artist namelistened by women in 2018.
-
-````SQL
-SELECT
-	dim_artists.name,
-    dim_songs.title,
-	COUNT(fact_songplays.songplay_id) as number_of_songplays
-
-FROM fact_songplays 
-
-INNER JOIN dim_artists 	      ON (fact_songplays.artist_id = dim_artists.artist_id)
-INNER JOIN dim_songs 	      ON (fact_songplays.song_id = dim_songs.song_id)
-INNER JOIN dim_users 	      ON (fact_songplays.user_id = dim_users.user_id)
-INNER JOIN dim_time  	      ON (fact_songplays.start_time = dim_time.start_time)
-
-where dim_time.year = 2018 and dim_users.gender = 'F'
-
-GROUP BY
-	dim_artists.name,  dim_songs.title
-order by 
-    number_of_songplays desc
-limit 10
-````
- 
- 
- This includes the following tables. 
- ### Fact Table
-1. **fact_songplays** - records in event data associated with song plays i.e. records with page NextSong
-### Dimension Tables
-1. **dim_users** - users in the app
-2. **dim_songs** - songs in music database
-3. **dim_artists** - artists in music database
-4. **dim_time** - timestamps of records in songplays broken down into specific units
-
 The overall schema can be resume below:
 
 <p align="center">
   <img src="./fig/schema.png" alt=".." title="Optional title" width="80%" height="70%"/>  
 </p> 
+
+## Project Overview
+As a data engineer, this project will introduce us to the core concepts of Apache Airflow. To complete the project, **we will need to create our own custom operators** to perform tasks such as **staging the data**, **filling the data warehouse**, and **running checks** on the data as the final step.
+
+We have been provided with a project template that takes care of all the imports and provides four empty operators that need to be implemented into functional pieces of a data pipeline. The template also contains a set of tasks that need to be linked to achieve a coherent and sensible data flow within the pipeline.
+
+At the end, the following DAG was choosen:
+
+<p align="center">
+  <img src="./fig/example-dag.png" alt=".." title="Optional title" width="80%" height="70%"/>  
+</p> 
+
+## File's structure
+
+<p align="center">
+  <img src="./fig/tree.png" alt=".." title="Optional title" width="80%" height="70%"/>  
+</p> 
+
+* **Project: Data Pipelines with Airflow** is the main directory of our project witch contains sub-folders like:
+
+* **airflow** is the repository using by Airflow UI to centralize all Dag's.
+
+* Inside airflow repository, we have two others folders/
+    * **dags**, where all DAG are centralize. For our purpose we only have one dag **tkamag_project_dag.py**. 
+    * **Helpers** folders containings:
+        * **Plugins** containing all additionnals tools using in our project.
+            * **create_tables.py**: Python script for creating all tables.
+            * **create_tables.py**: SQL script for creating tables.
+            * **sql_queries**: Python class containing SqlQueries.
+        * **Operators** containing somes classes
+            * **data_quality.py**
+            * **load_dimension.py**
+            * **Load_fact.py**
+            * **stage_redshift.py**
+
+## Creating the DAG
+As mentionned, the dag located in the **dag's folder**. you just need to execute the dasg file with all his dependencies.
