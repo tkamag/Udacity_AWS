@@ -65,3 +65,9 @@ This initial block consist of creating all table.
 <p align="center">
   <img src="./fig/create_table.png" alt=".." title="Optional title" width="50%" height="70%"/>  
 </p> 
+
+Now our final projet look like:
+
+<p align="center">
+  <img src="./fig/final_dag.png" alt=".." title="Optional title" width="50%" height="70%"/>  
+</p>
